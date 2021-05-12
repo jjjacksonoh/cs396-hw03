@@ -99,7 +99,7 @@ const createDoc = () => {
         </br>
         <!-- Buttons -->
         <button onclick="newDoc()" class="btn btn-main" id="create">Save</button>
-        <button class="btn" id="cancel">Cancel</button>
+        <button onclick="cancelDoc()" class="btn" id="cancel">Cancel</button>
     </form>`
     document.getElementById('companions').innerHTML = `` 
 }
@@ -192,7 +192,7 @@ const editDocButton = () => {
                 </br>
                 <!-- Buttons -->
                 <button onclick="editDoc()" class="btn btn-main" id="create">Save</button>
-                <button class="btn" id="cancel">Cancel</button>
+                <button onclick="cancelDoc()" class="btn" id="cancel">Cancel</button>
             </form>`
             document.getElementById('companions').innerHTML = ``
     })
