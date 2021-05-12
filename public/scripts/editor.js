@@ -194,7 +194,7 @@ const editDocButton = () => {
                 <button onclick="editDoc()" class="btn btn-main" id="create">Save</button>
                 <button onclick="cancelDoc()" class="btn" id="cancel">Cancel</button>
             </form>`
-            showDetail;
+            displayDoctor();
     })
 }
 
