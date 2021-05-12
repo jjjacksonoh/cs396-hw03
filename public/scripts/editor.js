@@ -1,4 +1,4 @@
-const baseURL = 'https://cs-396-hw03-jackson.herokuapp.com/';
+const baseURL = '';
 
 
 const initResetButton = () => {
