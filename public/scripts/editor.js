@@ -17,17 +17,31 @@ let currentDoctor;
 let doctors;
 
 const displayDoctor = (doctor) => {
-    currentDoctor = doctor;
-    document.getElementById('doctor').innerHTML = `
-    <div>
-        <h1 id=${doctor._id}>${doctor.name}</h1>
-        <img src="${doctor.image_url}"></img>
-        <p> Seasons: ${doctor.seasons}</p>
-        <button id="edit" onclick="editDocButton()">Edit Doctor</button>
-        <button id="delete" onclick="deleteDoc()">Delete Doctor</button>
-    </div>`
-
-    //document.getElementById('edit').onclick
+    if(doctor){
+        currentDoctor = doctor;
+        document.getElementById('doctor').innerHTML = `
+        <div>
+            <h1 id=${doctor._id}>${doctor.name}</h1>
+            <img src="${doctor.image_url}"></img>
+            <p> Seasons: ${doctor.seasons}</p>
+            <button id="edit" onclick="editDocButton()">Edit Doctor</button>
+            <button id="delete" onclick="deleteDoc()">Delete Doctor</button>
+        </div>`
+    } else {
+        fetch(`${baseURL}/doctors/${currentDoctor}`)
+            .then(response => response.json())
+            .then(doctor => {
+                document.getElementById('doctor').innerHTML = `
+                <div>
+                    <h1 id=${doctor._id}>${doctor.name}</h1>
+                    <img src="${doctor.image_url}"></img>
+                    <p> Seasons: ${doctor.seasons}</p>
+                    <button id="edit" onclick="editDocButton()">Edit Doctor</button>
+                    <button id="delete" onclick="deleteDoc()">Delete Doctor</button>
+                </div>`
+            })
+            //.catch(err => Error(err))
+    }
 }
 
 const attachEventHandlers = () => {
@@ -192,7 +206,7 @@ const editDocButton = () => {
                 </br>
                 <!-- Buttons -->
                 <button onclick="editDoc()" class="btn btn-main" id="create">Save</button>
-                <button onclick="displayDoc()" class="btn" id="cancel">Cancel</button>
+                <button onclick="displayDoctor()" class="btn" id="cancel">Cancel</button>
             </form>`
             document.getElementById('companions').innerHTML = `` 
     })
